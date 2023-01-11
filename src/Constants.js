@@ -17,6 +17,18 @@ export const fonts = {
 	secondary: `'Open Sans', sans-serif`
 };
 
+export const defaultHeaders = {
+	ChannelId: 'IN_WEB',
+	Accept: 'application/json',
+	'Content-type': 'application/json',
+	'X-Version': '1.0.0'
+};
+
+export const endPoints = {
+	login: 'login',
+	signup: 'signup'
+}
+
 export const loginForm = {
 	title: 'login',
 	subTitle: 'Welcome returning user, please log in!',

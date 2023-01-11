@@ -1,14 +1,20 @@
 // Library Import
 import { useState, useEffect } from 'react';
+import CryptoJS from 'crypto-js';
+import Base64 from 'crypto-js/enc-base64';
 
 // Component Import
 import SignUp from '../components/SignUp';
 
 // Constant import
-import { signUpForm } from '../Constants';
+import { endPoints, signUpForm } from '../Constants';
 
 // Utils Import
-import { checkOnlyLetters, checkPassword } from '../utils/util';
+import { 
+	checkOnlyLetters, 
+	checkPassword, 
+	serviceRequest 
+} from '../utils/util';
 
 const SignUpPage = () => {
 	const initInputData = {
@@ -34,7 +40,14 @@ const SignUpPage = () => {
 	const saveFormData = (e) => {
 		e.preventDefault();
 
-		
+		const emailId = CryptoJS.AES.encrypt(inputData.emailId, 'mysecretkeyhere123456').toString();
+		const hash = CryptoJS.SHA3(inputData.password, { outputLength: 512 });
+		const password = Base64.stringify(hash);
+
+		//const bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+		//const originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+		serviceRequest(endPoints.login, {password}, {emailId});
 	};
 
 	const formValidation = () => {

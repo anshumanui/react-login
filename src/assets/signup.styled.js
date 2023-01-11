@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // Constant import
-import { colors, fonts } from '../Constants';
+import { colors } from '../Constants';
 
 const Section = styled.section`
 	background-color: ${colors.primary};
@@ -56,7 +56,7 @@ const Name = styled(Input)`
 	border-color: ${props => props.message ? colors.error : colors.lighterGray};
 
 	:focus {
-		border-color: ${props => props.message ? colors.error : colors.lighterGray};
+		border-color: ${props => props.message ? colors.error : colors.darkGray};
 	}
 `;
 
@@ -67,7 +67,7 @@ const Password = styled(Input)`
 	border-color: ${props => props.message ? colors.error : colors.lighterGray};
 
 	:focus {
-		border-color: ${props => props.message ? colors.error : colors.lighterGray};
+		border-color: ${props => props.message ? colors.error : colors.darkGray};
 	}
 `;
 
