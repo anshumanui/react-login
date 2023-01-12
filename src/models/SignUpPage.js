@@ -1,22 +1,25 @@
-// Library Import
+//	Library Import
 import { useState, useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 import Base64 from 'crypto-js/enc-base64';
 
-// Component Import
+//	Component Import
 import SignUp from '../components/SignUp';
 
-// Constant import
+//	Constant import
 import { endPoints, signUpForm } from '../Constants';
 
-// Utils Import
+//	Utils Import
 import { 
 	checkOnlyLetters, 
 	checkPassword, 
 	serviceRequest 
 } from '../utils/util';
 
+
+//	Sign up page model, contains only react logic
 const SignUpPage = () => {
+	//	Initial state declaration
 	const initInputData = {
 		fullName: '',
 		emailId: '',
@@ -30,6 +33,7 @@ const SignUpPage = () => {
 	
 	const [inputData, setInputData] = useState(initInputData);
 
+	//	Save user entered input data
 	const saveInputData = (e) => {
 		setInputData((prevData) => ({
 			...prevData,
@@ -37,19 +41,7 @@ const SignUpPage = () => {
 		}));
 	};
 
-	const saveFormData = (e) => {
-		e.preventDefault();
-
-		const emailId = CryptoJS.AES.encrypt(inputData.emailId, 'mysecretkeyhere123456').toString();
-		const hash = CryptoJS.SHA3(inputData.password, { outputLength: 512 });
-		const password = Base64.stringify(hash);
-
-		//const bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-		//const originalText = bytes.toString(CryptoJS.enc.Utf8);
-
-		serviceRequest(endPoints.login, {password}, {emailId});
-	};
-
+	//	Validate the form data against the required format
 	const formValidation = () => {
 		let fullName = null;
 		let password = null;
@@ -70,7 +62,18 @@ const SignUpPage = () => {
 				password: password
 			}
 		}));
-	}
+	};
+
+	//	Save form data upon submit
+	const saveFormData = (e) => {
+		e.preventDefault();
+
+		const emailId = CryptoJS.AES.encrypt(inputData.emailId, 'mysecretkeyhere123456').toString();
+		const hash = CryptoJS.SHA3(inputData.password, { outputLength: 512 });
+		const password = Base64.stringify(hash);
+
+		serviceRequest(endPoints.login, {password}, {emailId});
+	};
 
 	useEffect(() => {
 		formValidation();

@@ -1,10 +1,10 @@
-// Library Imports
+//	Library Imports
 import { Link } from 'react-router-dom';
 
-// Constant import
+//	Constant import
 import { signUpForm } from '../Constants';
 
-// Login styling
+//	Login styling
 import {
 	Section,
 	Form,
@@ -18,6 +18,8 @@ import {
 	ErrorMessage
 } from '../assets/signup.styled';
 
+
+//	Sign up page component JSX declaration
 const SignUp = ({ fullName, emailId, password, message, saveInputData, saveFormData }) => {
 	return (
 		<Section>

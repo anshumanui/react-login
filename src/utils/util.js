@@ -1,15 +1,18 @@
-// Constant import
+//	Constant import
 import { defaultHeaders } from '../Constants';
 
+//	Checks only uppercase or lowercase letters or space
 export const checkOnlyLetters = (string) => {
 	return /[^a-z\s]/i.test(string);
 };
 
+//	Checks at least one spl character, one uppercase, one lowercase and a number
 export const checkPassword = (password) => {
 	const pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/
 	return pattern.test(password);
 };
 
+//	Fetch API call with abort controller
 export const serviceRequest = async (endPoint, headers, data) => {
 	const requestHeaders = {...defaultHeaders, ...headers};
 	const controller = new AbortController();

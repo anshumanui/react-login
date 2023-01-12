@@ -19,10 +19,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:server": "node ./server/bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": [
       "react-app",
