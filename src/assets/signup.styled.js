@@ -10,6 +10,10 @@ const Section = styled.section`
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+
+	@media all and (max-width: 414px) and (orientation: portrait) {
+		background-color: ${colors.white};
+	}
 `;
 
 const Form = styled.form`
@@ -18,10 +22,15 @@ const Form = styled.form`
 	box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 	padding: 2rem;
 	width: 100%;
-	max-width: 414px;
+	max-width: 375px;
 	display: flex;
 	gap: 2rem;
 	flex-direction: column;
+
+	@media all and (max-width: 414px) and (orientation: portrait) {
+		border-radius: 0;
+		box-shadow: none;
+	}
 `;
 
 const Title = styled.h1`
@@ -61,6 +70,11 @@ const Name = styled(Input)`
 `;
 
 const Email = styled(Input)`
+	border-color: ${props => props.message ? colors.error : colors.lighterGray};
+
+	:focus {
+		border-color: ${props => props.message ? colors.error : colors.darkGray};
+	}
 `;
 
 const Password = styled(Input)`

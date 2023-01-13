@@ -28,6 +28,11 @@ const GlobalStyle = createGlobalStyle`
 		font-family: ${fonts.secondary};
 		font-size: 0.95rem;
 		line-height: 1.6;
+
+		:-internal-autofill-selected {
+			-webkit-box-shadow: 0 0 0 50px ${colors.white} inset;
+			-webkit-text-fill-color: ${colors.darkerGray};
+		}
 	}
 
 	a {

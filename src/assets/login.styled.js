@@ -58,11 +58,19 @@ const Input = styled.input`
 `;
 
 const Email = styled(Input)`
-	border-color: ${props => props.message ? colors.error : colors.darkGray};
+	border-color: ${props => props.message ? colors.error : colors.lighterGray};
+
+	:focus {
+		border-color: ${props => props.message ? colors.error : colors.darkGray};
+	}
 `;
 
 const Password = styled(Input)`
-	border-color: ${props => props.message ? colors.error : colors.darkGray};
+	order-color: ${props => props.message ? colors.error : colors.lighterGray};
+
+	:focus {
+		border-color: ${props => props.message ? colors.error : colors.darkGray};
+	}
 `;
 
 const Button = styled(Input)`

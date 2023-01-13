@@ -18,7 +18,6 @@ export const fonts = {
 };
 
 export const defaultHeaders = {
-	ChannelId: 'IN_WEB',
 	Accept: 'application/json',
 	'Content-type': 'application/json',
 	'X-Version': '1.0.0'

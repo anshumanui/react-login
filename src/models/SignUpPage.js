@@ -65,14 +65,28 @@ const SignUpPage = () => {
 	};
 
 	//	Save form data upon submit
-	const saveFormData = (e) => {
+	const saveFormData = async (e) => {
 		e.preventDefault();
 
+		const fullName = inputData.fullName;
 		const emailId = CryptoJS.AES.encrypt(inputData.emailId, 'mysecretkeyhere123456').toString();
 		const hash = CryptoJS.SHA3(inputData.password, { outputLength: 512 });
 		const password = Base64.stringify(hash);
 
-		serviceRequest(endPoints.login, {password}, {emailId});
+		const requestHeaders = {password};
+		const requestBody = {fullName, emailId};
+
+		const response = await serviceRequest(endPoints.signup, requestHeaders, requestBody);
+
+		if (response && response.status === 'error') {
+			setInputData((prevData) => ({
+				...prevData,
+				message: {
+					...prevData.message, 
+					emailId: response.emailId
+				}
+			}));
+		}
 	};
 
 	useEffect(() => {

@@ -25,17 +25,15 @@ export const serviceRequest = async (endPoint, headers, data) => {
 
 	setTimeout(() => controller.abort(), 3000);
 
-	await fetch(endPoint, options, { signal })
-	.then(response => {
-	    if (!response.ok) {
+	try {
+		const response = await fetch(endPoint, options, { signal });
+
+		if (!response.ok) {
 	      	throw Error(`HTTP error: ${response.status}`);
 	    }
+
 	    return response.json();
-  	})
-  	.then(res => {
-  		console.log(res)
-  	})
-  	.catch((err) => {
-    	console.log(err.message)
-  	});
+	} catch (err) {
+    	console.log(`Details: ${err}`)
+	}
 }
